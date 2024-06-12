@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { resolve } from 'path';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
@@ -22,6 +23,7 @@ import { resolve } from 'path';
     ServeStaticModule.forRoot({
       rootPath: resolve(__dirname, '..', 'uploads'),
     }),
+    AdminModule,
   ],
   controllers: [],
   providers: [],
