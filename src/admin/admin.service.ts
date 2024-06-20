@@ -12,12 +12,16 @@ import { Admin } from './models/admin.model';
 import { AdminCreateDto } from './dto/admin-create.dto';
 import { AdminLoginDto } from './dto/admin-login.dto';
 import { ADminUpdateDto } from './dto/admin-update.dto';
+import { Background } from 'src/background/models/background.model';
+import { Category } from 'src/category/models/category.model';
 
 let newAdmin: any;
 @Injectable()
 export class AdminService {
   constructor(
     @InjectModel(Admin) private repo: typeof Admin,
+    @InjectModel(Background) private BackgroundRepo: typeof Background,
+    @InjectModel(Category) private CategoryRepo: typeof Category,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -86,10 +90,19 @@ export class AdminService {
       httpOnly: true,
     });
 
+    const background = await this.BackgroundRepo.findAll({
+      include: { all: true },
+    });
+    const category = await this.CategoryRepo.findAll({
+      include: { all: true },
+    });
+
     const response = {
       message: 'Admin logged in',
       admin: updatedAdmin[1][0],
       tokens,
+      background: background,
+      category: category,
     };
     return response;
   }
