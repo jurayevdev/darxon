@@ -37,19 +37,19 @@ import { Background } from './models/background.model';
       return this.service.create(createDto, image);
     }
   
-    @ApiOperation({ summary: "Background view" })
+    @ApiOperation({ summary: "Background view all" })
     @Get()
     async getAll() {
       return this.service.getAll();
     }
   
-    @ApiOperation({ summary: "View by Background ID" })
+    @ApiOperation({ summary: "Background view by ID" })
     @Get(':id')
     async getOne(@Param('id') id: string): Promise<Background> {
       return this.service.getOne(+id);
     }
   
-    @ApiOperation({ summary: "Delete by Background ID" })
+    @ApiOperation({ summary: "Background delete by ID" })
     @Roles('ADMIN')
     @UseGuards(RolesGuard)
     @Delete(':id')

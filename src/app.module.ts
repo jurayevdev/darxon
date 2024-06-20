@@ -10,6 +10,10 @@ import { Admin } from './admin/models/admin.model';
 import { Background } from './background/models/background.model';
 import { JwtModule } from '@nestjs/jwt';
 import { FilesModule } from './files/files.module';
+import { CategoryModule } from './category/category.module';
+import { MenuModule } from './menu/menu.module';
+import { Category } from './category/models/category.model';
+import { Menu } from './menu/models/menu.model';
 
 
 @Module({
@@ -22,7 +26,7 @@ import { FilesModule } from './files/files.module';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASS),
       database: process.env.POSTGRES_DB,
-      models: [Admin, Background],
+      models: [Admin, Background, Category, Menu],
       autoLoadModels: true,
       logging: false,
     }),
@@ -33,6 +37,8 @@ import { FilesModule } from './files/files.module';
     FilesModule,
     AdminModule,
     BackgroundModule,
+    CategoryModule,
+    MenuModule,
   ],
   controllers: [],
   providers: [],
