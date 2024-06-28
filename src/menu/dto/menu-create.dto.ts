@@ -12,6 +12,10 @@ export class MenuCreateDto {
     @IsNotEmpty()
     price: string;
 
+    @ApiProperty({example: "60", description: "Menu discount"})
+    @IsString()
+    discount: string;
+
     @ApiProperty({example: "Info", description: "Menu description"})
     @IsNotEmpty()
     description: string;

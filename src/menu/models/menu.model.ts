@@ -11,6 +11,7 @@ import { Category } from 'src/category/models/category.model';
 interface MenuAttr {
   name: string;
   price: string;
+  discount: string;
   description: string;
   image: string;
 }
@@ -33,6 +34,11 @@ export class Menu extends Model<Menu, MenuAttr> {
     type: DataType.STRING,
   })
   price: string;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  discount: string;
 
   @Column({
     type: DataType.TEXT,
