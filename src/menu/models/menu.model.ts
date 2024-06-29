@@ -12,6 +12,7 @@ interface MenuAttr {
   name: string;
   price: string;
   discount: string;
+  type: boolean;
   description: string;
   image: string;
 }
@@ -39,6 +40,11 @@ export class Menu extends Model<Menu, MenuAttr> {
     type: DataType.STRING,
   })
   discount: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+  })
+  type: boolean;
 
   @Column({
     type: DataType.TEXT,
