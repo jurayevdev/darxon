@@ -28,11 +28,20 @@ export class MenuService {
         message: 'Menu created',
         menu: menu,
       };
-    }
+    } 
   }
 
   async getAll() {
     const menus = await this.repo.findAll({ include: { all: true } });
+    menus.sort((a, b) => {
+      if (a.type && !b.type) {
+        return -1;
+      } else if (!a.type && b.type) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
     return menus;
   }
 

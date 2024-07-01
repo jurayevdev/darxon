@@ -32,9 +32,19 @@ export class CategoryService {
   }
 
   async getAll() {
-    const categorys = await this.repo.findAll({ include: { all: true } });
-    return categorys;
+    const categories = await this.repo.findAll({ include: { all: true } });
+    
+    categories.forEach(category => {
+      if (category.menu && Array.isArray(category.menu)) {
+        category.menu.sort((a, b) => {
+          return (a.type === b.type) ? 0 : a.type ? -1 : 1;
+        });
+      }
+    });
+  
+    return categories;
   }
+  
 
   async getOne(id: number): Promise<Category> {
     const category = await this.repo.findByPk(id);

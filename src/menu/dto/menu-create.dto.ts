@@ -19,6 +19,9 @@ export class MenuCreateDto {
     @ApiProperty({example: "true or false", description: "Menu type"})
     type: boolean;
 
+    @ApiProperty({example: "true or false", description: "Menu new"})
+    new: boolean;
+
     @ApiProperty({example: "Info", description: "Menu description"})
     @IsNotEmpty()
     description: string;
